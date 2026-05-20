@@ -1,0 +1,29 @@
+Dataset Summary – Honda RA621H F1 Assembly,,,
+Metric,Value,Metric,Value
+Total Components (Nodes),103,Total Assembly Edges,216
+Critical Path Components,52,Non-Critical Components,51
+Total Assembly Duration (hrs),1032,Estimated Total Duration (hrs),1485
+Total Subsystems,19,Unique Materials,20+
+Root Nodes (no deps),16,Leaf Node (Final Sign-Off),C103
+,,,
+Subsystem Breakdown,,,
+Subsystem,# Components,Total Duration (hrs),Color Code
+ICE – Internal Combustion Engine,15,254,#CC0000
+Turbocharger System,9,114,#E65100
+Hybrid – MGU-H,5,68,#6A1B9A
+Hybrid – MGU-K,5,58,#1565C0
+Energy Store (ES),4,58,#2E7D32
+Lubrication System,4,24,#5D4037
+Cooling System,3,22,#00695C
+Fuel System,3,22,#F57F17
+Electronics & Control,3,34,#37474F
+Chassis & Monocoque,4,132,#424242
+Suspension – Front,6,56,#880E4F
+Suspension – Rear,6,58,#AD1457
+Aerodynamics – Front,5,148,#0277BD
+Aerodynamics – Rear,4,84,#01579B
+Gearbox & Drivetrain,5,112,#4A148C
+Braking System,6,68,#B71C1C
+Wheels & Tyres,3,18,#33691E
+Cockpit & Safety,6,57,#006064
+Final Assembly,7,98,#212121

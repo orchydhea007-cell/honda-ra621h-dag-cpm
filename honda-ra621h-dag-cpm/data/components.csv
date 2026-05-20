@@ -1,0 +1,104 @@
+Component ID,Component Name,Subsystem,Depends On (IDs),Duration (hrs),Is Critical Path,Weight (kg),Material,Notes
+C001,V6 Cylinder Block (1.6L 90° Bank),ICE – Internal Combustion Engine,,48,✓ CRITICAL,12,Cast Aluminium Alloy,"80mm bore, 90° bank angle per FIA regs. K-Plating applied (Kumamoto method) to bore surface"
+C002,Crankshaft,ICE – Internal Combustion Engine,C001,24,✓ CRITICAL,3.8,Forged Steel,Connects to MGU-K via gear. Must balance torsional resonance (key failure mode 2015–2017)
+C003,Connecting Rods (x6),ICE – Internal Combustion Engine,"C001,C002",12,✓ CRITICAL,0.9,Titanium Alloy,"Ultra-lightweight; 6 cylinders, each 150g. Tolerance <0.01mm"
+C004,Pistons (x6),ICE – Internal Combustion Engine,"C001,C003",16,✓ CRITICAL,0.6,Forged Aluminium / Steel Crown,3D-printed steel pistons (additive mfg) used from RA620H 2020. Complex internal ribbing
+C005,Piston Rings (x18),ICE – Internal Combustion Engine,C004,4,—,0.1,Chrome-Molybdenum Steel,3 rings per piston; K-Plating bore reduces ring wear at high combustion pressure
+C006,Cylinder Head (x2 banks),ICE – Internal Combustion Engine,"C001,C004",36,✓ CRITICAL,4.5,Aluminium Alloy,"32° valve angle, flat-top combustion chamber for rapid combustion (RA621H 2021 redesign)"
+C007,Intake Valves (x12),ICE – Internal Combustion Engine,C006,8,—,0.05,Titanium Alloy,2 intake valves per cylinder. Minimum stem diameter 5mm per FIA regs
+C008,Exhaust Valves (x12),ICE – Internal Combustion Engine,C006,8,—,0.06,Inconel 713,High-temp alloy; exhaust exits outside bank (per regs). Feeds turbine
+C009,Camshafts (x4),ICE – Internal Combustion Engine,"C006,C007,C008",14,✓ CRITICAL,0.8,Case-Hardened Steel,2 DOHC per bank. Drives valve timing. Pneumatic valve springs (not mechanical)
+C010,Valve Actuation – Pneumatic System,ICE – Internal Combustion Engine,C009,6,—,0.4,Titanium / Stainless Steel,"Replaces coil springs; enables 20,000+ rpm without valve float"
+C011,Engine Block Lower Casing,ICE – Internal Combustion Engine,"C001,C002",10,—,5,Cast Aluminium,Structural load path for PU mounting to gearbox
+C012,Direct Injection System (x6 injectors),ICE – Internal Combustion Engine,C006,8,✓ CRITICAL,0.3,Stainless Steel / Piezo,Max injection pressure 500 bar per FIA regs. Critical for new combustion process (2019+)
+C013,Ignition System (x6 coils + spark plugs),ICE – Internal Combustion Engine,"C006,C012",4,—,0.2,Iridium / Copper Core,Synchronised with MGU-H energy recovery for combustion efficiency
+C014,Exhaust Manifold (equal-length runners),ICE – Internal Combustion Engine,C008,20,✓ CRITICAL,2.1,Inconel 625,Individual equal-length runners reworked RA617H+. Feeds turbine efficiently
+C015,Engine Assembly & Bench Calibration,ICE – Internal Combustion Engine,"C001,C002,C003,C004,C005,C006,C007,C008,C009,C010,C011,C012,C013,C014",36,✓ CRITICAL,—,—,Full ICE assembly + dyno calibration at Sakura HRC facility
+C016,Turbine Housing,Turbocharger System,C014,20,✓ CRITICAL,1.8,Inconel (3D-printed),Additive manufactured from 2020. Rear-projecting layout (RA617H+ redesign)
+C017,Turbine Blades / Wheel,Turbocharger System,C016,16,✓ CRITICAL,0.4,Nickel Superalloy,3D complex blade geometry for high efficiency. HondaJet gas turbine knowledge applied
+C018,Compressor Housing,Turbocharger System,,18,✓ CRITICAL,1.2,Aluminium Alloy,Front-projecting (RA617H redesign). Freed from V-bank; larger size for higher airflow
+C019,Compressor Wheel,Turbocharger System,C018,14,✓ CRITICAL,0.3,Titanium Alloy,Wide pressure ratio coverage. Redesigned 2019 French GP for efficiency across full range
+C020,Turbo Shaft (MGU-H Drive Shaft),Turbocharger System,"C017,C019",10,✓ CRITICAL,0.2,High-strength Steel,Connects turbine-MGU-H-compressor. Changed to longer shaft 2017 for turbine efficiency
+C021,Turbo Bearing Assembly,Turbocharger System,C020,8,—,0.1,Ceramic / Steel (oil-lubricated),Changed greased→oil lubrication RA618H. Pressurized chamber to seal oil at 100k+ rpm
+C022,Charge Air Cooler (Inter-cooler),Turbocharger System,"C019,C018",12,—,1.5,Aluminium,Cools compressed air before intake. Compact design per McLaren era (RA615H)
+C023,Wastegate Actuator,Turbocharger System,C016,4,—,0.2,Stainless Steel,Bypasses excess exhaust; less critical with MGU-H managing boost
+C024,Turbocharger Sub-Assembly,Turbocharger System,"C016,C017,C018,C019,C020,C021,C022,C023",12,✓ CRITICAL,—,—,Full turbo unit assembled before mating with MGU-H
+C025,MGU-H Rotor & Magnet Assembly,Hybrid – MGU-H,,20,✓ CRITICAL,1.5,High-flux Neodymium Magnets,RA621H: high magnetic flux density magnets + high thermal conductivity insulators
+C026,MGU-H Stator Windings,Hybrid – MGU-H,C025,16,✓ CRITICAL,1.2,Copper / Insulated Litz Wire,Converts shaft rotation→electricity (gen mode) or electricity→shaft (motor mode)
+C027,MGU-H Housing,Hybrid – MGU-H,"C025,C026",14,✓ CRITICAL,0.8,Inconel (3D-printed),Pressurized chamber for oil sealing. Sandwiched between turbine & compressor
+C028,MGU-H Cooling Circuit,Hybrid – MGU-H,C027,8,—,0.3,Aluminium / Polymer,"Maintains thermal limits at 125,000 rpm. Critical for RA621H output targets"
+C029,MGU-H Assembly (complete),Hybrid – MGU-H,"C024,C025,C026,C027,C028",10,✓ CRITICAL,—,—,"Mated to turbo shaft. Min weight 4kg. Power ~90-100 kW at 125,000 rpm"
+C030,MGU-K Rotor & Magnet Assembly,Hybrid – MGU-K,,18,✓ CRITICAL,2,High-flux Neodymium Magnets,RA621H gear ratio change allows energy recovery at even lower engine speeds
+C031,MGU-K Stator Windings,Hybrid – MGU-K,C030,14,✓ CRITICAL,1.8,Copper / Litz Wire,Max output 120 kW / 200 Nm per FIA regs. Housing rigidity increased RA621H for vibration
+C032,MGU-K Gear Interface,Hybrid – MGU-K,"C030,C031,C002",10,✓ CRITICAL,0.5,Case-hardened Steel Gears,Connects MGU-K to crankshaft. Shaft weakness (spring design) resolved torsional resonance
+C033,MGU-K Housing & Bearing,Hybrid – MGU-K,"C030,C031",8,—,1,Aluminium / Steel Bearings,Bearing support changed 2018; radial load allowance increased after bench-vs-installed failure
+C034,MGU-K Assembly (complete),Hybrid – MGU-K,"C030,C031,C032,C033",8,✓ CRITICAL,—,—,Connected to crankshaft gear. Provides up to 160 bhp ERS deployment
+C035,Li-Ion Battery Cells (ES),Energy Store (ES),,20,✓ CRITICAL,10,Lithium-Ion Polymer,High-performance specialist battery. Max 4 MJ deploy per lap / 2 MJ recover via MGU-K
+C036,Battery Management System (BMS),Energy Store (ES),C035,12,✓ CRITICAL,0.5,PCB / Custom ASIC,"Manages thermal limits, charge/discharge rate, and voltage balance"
+C037,ES Thermal Management,Energy Store (ES),"C035,C036",10,—,1.2,Aluminium / Cooling Plates,Fast charge/discharge generates extreme heat. Integrated liquid cooling
+C038,Power Electronics / Inverter Unit,Energy Store (ES),"C029,C034,C035,C036,C037",16,✓ CRITICAL,2,Silicon Carbide (SiC) MOSFETs,Bi-directional AC/DC converters. Enables direct MGU-H→MGU-K routing bypassing battery
+C039,Dry-Sump Oil Tank,Lubrication System,,6,—,1.5,Carbon Fibre / Aluminium,Low-profile for CoG; separated from engine block
+C040,Oil Pump & Scavenge Pumps,Lubrication System,C039,8,✓ CRITICAL,0.8,Machined Aluminium,Multiple scavenge pumps for high-G cornering oil control
+C041,Oil Cooler,Lubrication System,"C039,C040",6,—,0.9,Aluminium,Keeps oil at optimal viscosity; integrated into cooling circuit
+C042,Oil Filter & Pressure Regulators,Lubrication System,C040,4,—,0.2,Stainless Steel,Prevents particulate damage. Critical for engine life management (2–3 races per PU)
+C043,Water Pump (Electric),Cooling System,,6,—,0.6,Machined Aluminium / Impeller,Electrically driven for independent cooling control
+C044,Radiators (x2 side pods),Cooling System,C043,10,—,2.4,Aluminium Core / Carbon Ducts,Side pod mounted. Compact design to minimise aerodynamic drag
+C045,Coolant Hoses & Distribution Lines,Cooling System,"C043,C044",6,—,0.5,Silicone / Composite,"Routes coolant to ICE, MGU-K, ES. High-temp rated >180°C"
+C046,"Fuel Tank (FIA Bladder, ~100kg capacity)",Fuel System,,12,—,4,FIA Kevlar Bladder,Crash-tested safety bladder. Positioned centrally for weight distribution
+C047,Fuel Pump & Pressure Regulator,Fuel System,C046,6,✓ CRITICAL,0.4,Stainless Steel / Titanium,Must supply 100 kg/hr max flow rate (FIA regulated). High-pressure to injectors
+C048,Fuel Filter & Lines,Fuel System,"C046,C047",4,—,0.3,Stainless / PTFE-lined,Prevents injector damage. Zero tolerance for particulate contamination
+C049,Engine Control Unit (ECU) – FIA Standard,Electronics & Control,,8,✓ CRITICAL,0.9,Custom ASIC / PCB,FIA mandated McLaren TAG-320 ECU. Controls all PU functions + energy management
+C050,Wiring Loom (PU section),Electronics & Control,C049,16,—,3.5,Shielded Copper / PTFE,"~1 km total wiring in F1 car. PU section manages MGU-H, MGU-K, ES, ICE signals"
+C051,Sensors Array (temp/pressure/speed – PU),Electronics & Control,"C049,C050",10,—,0.6,Piezoelectric / Thermocouple,100s of sensors. Data telemetered live to Sakura HRC during race
+C052,Carbon Fibre Monocoque (Survival Cell),Chassis & Monocoque,,96,✓ CRITICAL,35,Carbon Fibre Composite (CFRP),"Autoclave-cured CFRP. Accuracy ±0.05mm. Integrates survival cell, fuel tank cavity"
+C053,Roll Hoop (Halo + Main),Chassis & Monocoque,C052,24,✓ CRITICAL,7.5,Carbon Fibre / Titanium,"Halo (titanium, 7.5mm thick) mandatory since 2018. Withstands 125 kN load"
+C054,Ballast Weights,Chassis & Monocoque,C052,4,—,12,Tungsten,Adjust CoG and minimum weight (798 kg with driver 2021). Critical for balance
+C055,Mounting Points – Engine & Gearbox,Chassis & Monocoque,"C052,C015",8,✓ CRITICAL,—,CFRP insert / Ti bolts,Engine stressed member of chassis. PU acts as structural element
+C056,Front Upper Wishbone (x2),Suspension – Front,C052,12,—,0.6,Carbon Fibre,Double wishbone geometry. Push-rod actuation layout front
+C057,Front Lower Wishbone (x2),Suspension – Front,C052,12,—,0.7,Carbon Fibre,Aero-shaped cross-section to manage underfloor airflow
+C058,Front Push-Rod (x2),Suspension – Front,"C056,C057",6,—,0.2,Carbon Fibre,Transmits suspension loads to inboard rocker
+C059,Front Rockers & Torsion Bars (x2),Suspension – Front,C058,8,—,0.4,Titanium Alloy,Adjustable setup for different circuit characteristics (stiff vs compliant)
+C060,Front Upright & Hub Assembly (x2),Suspension – Front,"C056,C057",14,—,1.8,Billet Aluminium / Ti,Houses wheel bearing; interfaces with brake caliper and wheel
+C061,Front Anti-Roll Bar,Suspension – Front,C059,4,—,0.1,Carbon Fibre,Controls body roll in cornering. Adjustable stiffness
+C062,Rear Upper Wishbone (x2),Suspension – Rear,C055,12,—,0.7,Carbon Fibre,Pull-rod rear actuation layout (RB16B). Lower CoG benefit
+C063,Rear Lower Wishbone (x2),Suspension – Rear,C055,12,—,0.8,Carbon Fibre,Designed around gearbox casing geometry
+C064,Rear Pull-Rod (x2),Suspension – Rear,"C062,C063",6,—,0.2,Carbon Fibre,Loads fed down to gearbox-mounted damper unit
+C065,Rear Rockers & Damper Unit (x2),Suspension – Rear,C064,10,—,0.5,Titanium / Aluminium,Gearbox integrated. Complex multi-element damper
+C066,Rear Upright & Hub Assembly (x2),Suspension – Rear,"C062,C063",14,—,2,Billet Aluminium / Ti,Interfaces with brake-by-wire system and driveshaft
+C067,Rear Anti-Roll Bar,Suspension – Rear,C065,4,—,0.1,Carbon Fibre,Adjustable; key setup parameter for rear stability
+C068,Front Wing Mainplane,Aerodynamics – Front,C052,40,✓ CRITICAL,5.5,Carbon Fibre Composite,Most complex aero part. 4–6 weeks design+test. Multiple elements for downforce
+C069,Front Wing Flap Cascade Elements (x4),Aerodynamics – Front,C068,20,—,1.2,Carbon Fibre Composite,Adjustable for downforce level. Replaced each race weekend after contact risk
+C070,Nose Cone (crash structure),Aerodynamics – Front,"C068,C052",24,✓ CRITICAL,3,Carbon Fibre / Nomex Honeycomb,FIA crash-tested. Sacrificial structure. Shaped for aerodynamic entry
+C071,Bargeboard / Vane Package,Aerodynamics – Front,"C052,C070",28,—,1.5,Carbon Fibre Composite,Directs airflow to sidepods and floor. High-update rate component across season
+C072,Floor & Skid Block Assembly,Aerodynamics – Front,C052,36,✓ CRITICAL,8,Carbon Fibre / Plank (hardwood),Generates significant ground effect downforce. FIA-regulated 10mm wooden plank
+C073,Rear Wing Mainplane,Aerodynamics – Rear,C055,30,✓ CRITICAL,4,Carbon Fibre Composite,Fixed structure. Angle adjusted per circuit (Monaco high vs Monza low downforce)
+C074,DRS Flap (Drag Reduction System),Aerodynamics – Rear,C073,12,—,0.5,Carbon Fibre Composite,FIA-controlled actuation. Opens on designated DRS zones to reduce drag ~20%
+C075,Beam Wing,Aerodynamics – Rear,"C073,C055",14,—,1,Carbon Fibre Composite,Lower secondary element below rear wing. Seals diffuser exit flow
+C076,Diffuser,Aerodynamics – Rear,"C072,C055",28,✓ CRITICAL,3.5,Carbon Fibre Composite,Accelerates underfloor airflow exit. Critical ground-effect component
+C077,Gearbox Casing (8-speed semi-auto),Gearbox & Drivetrain,C055,48,✓ CRITICAL,18,Carbon Fibre / Titanium,8-speed seamless shift. Acts as structural rear suspension carrier (RB16B)
+C078,Gear Stack & Selector Mechanism,Gearbox & Drivetrain,C077,32,✓ CRITICAL,4.5,Case-hardened Steel,Seamless shift: next gear pre-engaged. <5ms shift time. Barrel cam selection
+C079,Differential,Gearbox & Drivetrain,"C077,C078",14,✓ CRITICAL,1.8,Titanium / Steel,Multi-plate clutch diff. Adjustable ramp angles for traction balance
+C080,Driveshafts (x2),Gearbox & Drivetrain,"C079,C066",10,—,1.2,Carbon Fibre / CV Joints Ti,Constant-velocity joints for suspension articulation + high-torque delivery
+C081,Clutch Assembly,Gearbox & Drivetrain,"C077,C034",8,✓ CRITICAL,0.6,Carbon-Carbon Multi-plate,Paddle-operated. Must accommodate MGU-K torque delivery during race start
+C082,Carbon Brake Discs – Front (x2),Braking System,C060,16,✓ CRITICAL,1,Carbon-Carbon Composite,~1000°C operational temp. 28mm thick. Glowing red during braking visible in races
+C083,Carbon Brake Discs – Rear (x2),Braking System,C066,14,—,0.9,Carbon-Carbon Composite,Brake-by-wire rear (coordinates with MGU-K regen braking)
+C084,Brake Calipers – Front (x2),Braking System,"C060,C082",10,—,1.4,Billet Aluminium (Brembo),6-piston monoblock caliper. Custom made per team specification
+C085,Brake Calipers – Rear (x2),Braking System,"C066,C083",10,—,1.2,Billet Aluminium (Brembo),Integrated brake-by-wire actuator for regen coordination
+C086,Brake Ducts & Cooling Scoops (x4),Braking System,"C082,C083,C084,C085",8,—,0.6,Carbon Fibre,Circuit-specific. Minimal cooling (low drag) at Monza; maximum at Monaco
+C087,Master Cylinders & Brake-by-Wire ECU,Braking System,"C049,C083,C085",10,✓ CRITICAL,0.8,Aluminium / Electronics,Blends hydraulic front brakes with electric rear braking from MGU-K
+C088,Forged Magnesium Wheels – Front (x2),Wheels & Tyres,C060,8,—,2,Forged Magnesium Alloy,18-inch (from 2022 regs). Centre-lock. OZ Racing supplied
+C089,Forged Magnesium Wheels – Rear (x2),Wheels & Tyres,C066,8,—,2.5,Forged Magnesium Alloy,"Wider than front. Must withstand 12,000 Nm under heavy acceleration"
+C090,Pirelli P Zero Tyres – set (4),Wheels & Tyres,"C088,C089",2,—,10,Rubber / Kevlar Belts,5 compounds: C1–C5. Teams receive 13 sets per race weekend (2021 regs)
+C091,Halo Titanium Structure,Cockpit & Safety,C052,16,✓ CRITICAL,7.5,Grade 5 Titanium (6Al-4V),"Mandatory since 2018. 125 kN frontal load requirement. Saved Leclerc, Zhou lives"
+C092,Driver Seat (custom moulded),Cockpit & Safety,C052,12,—,3,Carbon Fibre,Moulded to specific driver. Removes in <5s for rescue. HANS device compatible
+C093,Steering Wheel & Column,Cockpit & Safety,"C052,C049",20,✓ CRITICAL,1.5,Carbon Fibre / Electronics,"~25 buttons, rotary dials. Detachable; driver must exit with it per FIA regs"
+C094,Safety Harness (6-point),Cockpit & Safety,"C052,C092",2,—,0.5,FIA-rated Polyester Webbing,6-point HANS-compatible. Replaced each race event
+C095,Fire Suppression System,Cockpit & Safety,C052,4,—,1,AFFF / Halon Cylinder,Cockpit + engine bay nozzles. Driver-activated or auto-trigger
+C096,Drink System & Helmet Cooling,Cockpit & Safety,C052,3,—,0.4,Food-grade Tubing / Pump,Delivers electrolyte drink + cooling air inside helmet during race
+C097,PU Installation into Chassis,Final Assembly,"C015,C029,C034,C038,C052,C055",24,✓ CRITICAL,—,—,Honda RA621H power unit (ICE+MGU-H+MGU-K+ES+inverter) installed as structural member
+C098,Gearbox Mating to PU,Final Assembly,"C097,C077,C078,C079,C081",12,✓ CRITICAL,—,—,Gearbox bolted to PU rear face. Rear suspension carrier now active
+C099,Suspension Assembly – Full Car,Final Assembly,"C098,C056,C057,C058,C059,C060,C061,C062,C063,C064,C065,C066,C067",16,✓ CRITICAL,—,—,Front and rear suspension installed. Geometry set to base setup
+C100,Aero & Bodywork Installation,Final Assembly,"C099,C068,C069,C070,C071,C072,C073,C074,C075,C076",20,✓ CRITICAL,—,—,"All carbon bodywork, wings, floor fitted. Circuit-specific aero configuration"
+C101,"Brakes, Wheels & Tyre Fitting",Final Assembly,"C099,C082,C083,C084,C085,C086,C087,C088,C089,C090",8,✓ CRITICAL,—,—,Braking system installed. Brake-by-wire calibrated. Tyres fitted and pressured
+C102,"Cockpit, Safety & Electronics Commissioning",Final Assembly,"C099,C091,C092,C093,C094,C095,C096,C050,C051",10,✓ CRITICAL,—,—,"Driver seat, halo, steering, safety systems installed. ECU flashed with race software"
+C103,Full Car Systems Check & Sign-Off,Final Assembly,"C097,C098,C099,C100,C101,C102",8,✓ CRITICAL,—,—,"Full car fired up, all PU systems verified, weight/CoG measured. FIA scrutineering ready"

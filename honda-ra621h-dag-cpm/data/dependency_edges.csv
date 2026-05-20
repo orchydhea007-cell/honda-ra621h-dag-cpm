@@ -1,0 +1,217 @@
+Edge ID,FROM (Prerequisite ID),FROM Name,TO (Dependent ID),TO Name,Edge Weight (hrs)
+E001,C001,V6 Cylinder Block (1.6L 90° Bank),C002,Crankshaft,48
+E002,C001,V6 Cylinder Block (1.6L 90° Bank),C003,Connecting Rods (x6),48
+E003,C002,Crankshaft,C003,Connecting Rods (x6),24
+E004,C001,V6 Cylinder Block (1.6L 90° Bank),C004,Pistons (x6),48
+E005,C003,Connecting Rods (x6),C004,Pistons (x6),12
+E006,C004,Pistons (x6),C005,Piston Rings (x18),16
+E007,C001,V6 Cylinder Block (1.6L 90° Bank),C006,Cylinder Head (x2 banks),48
+E008,C004,Pistons (x6),C006,Cylinder Head (x2 banks),16
+E009,C006,Cylinder Head (x2 banks),C007,Intake Valves (x12),36
+E010,C006,Cylinder Head (x2 banks),C008,Exhaust Valves (x12),36
+E011,C006,Cylinder Head (x2 banks),C009,Camshafts (x4),36
+E012,C007,Intake Valves (x12),C009,Camshafts (x4),8
+E013,C008,Exhaust Valves (x12),C009,Camshafts (x4),8
+E014,C009,Camshafts (x4),C010,Valve Actuation – Pneumatic System,14
+E015,C001,V6 Cylinder Block (1.6L 90° Bank),C011,Engine Block Lower Casing,48
+E016,C002,Crankshaft,C011,Engine Block Lower Casing,24
+E017,C006,Cylinder Head (x2 banks),C012,Direct Injection System (x6 injectors),36
+E018,C006,Cylinder Head (x2 banks),C013,Ignition System (x6 coils + spark plugs),36
+E019,C012,Direct Injection System (x6 injectors),C013,Ignition System (x6 coils + spark plugs),8
+E020,C008,Exhaust Valves (x12),C014,Exhaust Manifold (equal-length runners),8
+E021,C001,V6 Cylinder Block (1.6L 90° Bank),C015,Engine Assembly & Bench Calibration,48
+E022,C002,Crankshaft,C015,Engine Assembly & Bench Calibration,24
+E023,C003,Connecting Rods (x6),C015,Engine Assembly & Bench Calibration,12
+E024,C004,Pistons (x6),C015,Engine Assembly & Bench Calibration,16
+E025,C005,Piston Rings (x18),C015,Engine Assembly & Bench Calibration,4
+E026,C006,Cylinder Head (x2 banks),C015,Engine Assembly & Bench Calibration,36
+E027,C007,Intake Valves (x12),C015,Engine Assembly & Bench Calibration,8
+E028,C008,Exhaust Valves (x12),C015,Engine Assembly & Bench Calibration,8
+E029,C009,Camshafts (x4),C015,Engine Assembly & Bench Calibration,14
+E030,C010,Valve Actuation – Pneumatic System,C015,Engine Assembly & Bench Calibration,6
+E031,C011,Engine Block Lower Casing,C015,Engine Assembly & Bench Calibration,10
+E032,C012,Direct Injection System (x6 injectors),C015,Engine Assembly & Bench Calibration,8
+E033,C013,Ignition System (x6 coils + spark plugs),C015,Engine Assembly & Bench Calibration,4
+E034,C014,Exhaust Manifold (equal-length runners),C015,Engine Assembly & Bench Calibration,20
+E035,C014,Exhaust Manifold (equal-length runners),C016,Turbine Housing,20
+E036,C016,Turbine Housing,C017,Turbine Blades / Wheel,20
+E037,C018,Compressor Housing,C019,Compressor Wheel,18
+E038,C017,Turbine Blades / Wheel,C020,Turbo Shaft (MGU-H Drive Shaft),16
+E039,C019,Compressor Wheel,C020,Turbo Shaft (MGU-H Drive Shaft),14
+E040,C020,Turbo Shaft (MGU-H Drive Shaft),C021,Turbo Bearing Assembly,10
+E041,C019,Compressor Wheel,C022,Charge Air Cooler (Inter-cooler),14
+E042,C018,Compressor Housing,C022,Charge Air Cooler (Inter-cooler),18
+E043,C016,Turbine Housing,C023,Wastegate Actuator,20
+E044,C016,Turbine Housing,C024,Turbocharger Sub-Assembly,20
+E045,C017,Turbine Blades / Wheel,C024,Turbocharger Sub-Assembly,16
+E046,C018,Compressor Housing,C024,Turbocharger Sub-Assembly,18
+E047,C019,Compressor Wheel,C024,Turbocharger Sub-Assembly,14
+E048,C020,Turbo Shaft (MGU-H Drive Shaft),C024,Turbocharger Sub-Assembly,10
+E049,C021,Turbo Bearing Assembly,C024,Turbocharger Sub-Assembly,8
+E050,C022,Charge Air Cooler (Inter-cooler),C024,Turbocharger Sub-Assembly,12
+E051,C023,Wastegate Actuator,C024,Turbocharger Sub-Assembly,4
+E052,C025,MGU-H Rotor & Magnet Assembly,C026,MGU-H Stator Windings,20
+E053,C025,MGU-H Rotor & Magnet Assembly,C027,MGU-H Housing,20
+E054,C026,MGU-H Stator Windings,C027,MGU-H Housing,16
+E055,C027,MGU-H Housing,C028,MGU-H Cooling Circuit,14
+E056,C024,Turbocharger Sub-Assembly,C029,MGU-H Assembly (complete),12
+E057,C025,MGU-H Rotor & Magnet Assembly,C029,MGU-H Assembly (complete),20
+E058,C026,MGU-H Stator Windings,C029,MGU-H Assembly (complete),16
+E059,C027,MGU-H Housing,C029,MGU-H Assembly (complete),14
+E060,C028,MGU-H Cooling Circuit,C029,MGU-H Assembly (complete),8
+E061,C030,MGU-K Rotor & Magnet Assembly,C031,MGU-K Stator Windings,18
+E062,C030,MGU-K Rotor & Magnet Assembly,C032,MGU-K Gear Interface,18
+E063,C031,MGU-K Stator Windings,C032,MGU-K Gear Interface,14
+E064,C002,Crankshaft,C032,MGU-K Gear Interface,24
+E065,C030,MGU-K Rotor & Magnet Assembly,C033,MGU-K Housing & Bearing,18
+E066,C031,MGU-K Stator Windings,C033,MGU-K Housing & Bearing,14
+E067,C030,MGU-K Rotor & Magnet Assembly,C034,MGU-K Assembly (complete),18
+E068,C031,MGU-K Stator Windings,C034,MGU-K Assembly (complete),14
+E069,C032,MGU-K Gear Interface,C034,MGU-K Assembly (complete),10
+E070,C033,MGU-K Housing & Bearing,C034,MGU-K Assembly (complete),8
+E071,C035,Li-Ion Battery Cells (ES),C036,Battery Management System (BMS),20
+E072,C035,Li-Ion Battery Cells (ES),C037,ES Thermal Management,20
+E073,C036,Battery Management System (BMS),C037,ES Thermal Management,12
+E074,C029,MGU-H Assembly (complete),C038,Power Electronics / Inverter Unit,10
+E075,C034,MGU-K Assembly (complete),C038,Power Electronics / Inverter Unit,8
+E076,C035,Li-Ion Battery Cells (ES),C038,Power Electronics / Inverter Unit,20
+E077,C036,Battery Management System (BMS),C038,Power Electronics / Inverter Unit,12
+E078,C037,ES Thermal Management,C038,Power Electronics / Inverter Unit,10
+E079,C039,Dry-Sump Oil Tank,C040,Oil Pump & Scavenge Pumps,6
+E080,C039,Dry-Sump Oil Tank,C041,Oil Cooler,6
+E081,C040,Oil Pump & Scavenge Pumps,C041,Oil Cooler,8
+E082,C040,Oil Pump & Scavenge Pumps,C042,Oil Filter & Pressure Regulators,8
+E083,C043,Water Pump (Electric),C044,Radiators (x2 side pods),6
+E084,C043,Water Pump (Electric),C045,Coolant Hoses & Distribution Lines,6
+E085,C044,Radiators (x2 side pods),C045,Coolant Hoses & Distribution Lines,10
+E086,C046,"Fuel Tank (FIA Bladder, ~100kg capacity)",C047,Fuel Pump & Pressure Regulator,12
+E087,C046,"Fuel Tank (FIA Bladder, ~100kg capacity)",C048,Fuel Filter & Lines,12
+E088,C047,Fuel Pump & Pressure Regulator,C048,Fuel Filter & Lines,6
+E089,C049,Engine Control Unit (ECU) – FIA Standard,C050,Wiring Loom (PU section),8
+E090,C049,Engine Control Unit (ECU) – FIA Standard,C051,Sensors Array (temp/pressure/speed – PU),8
+E091,C050,Wiring Loom (PU section),C051,Sensors Array (temp/pressure/speed – PU),16
+E092,C052,Carbon Fibre Monocoque (Survival Cell),C053,Roll Hoop (Halo + Main),96
+E093,C052,Carbon Fibre Monocoque (Survival Cell),C054,Ballast Weights,96
+E094,C052,Carbon Fibre Monocoque (Survival Cell),C055,Mounting Points – Engine & Gearbox,96
+E095,C015,Engine Assembly & Bench Calibration,C055,Mounting Points – Engine & Gearbox,36
+E096,C052,Carbon Fibre Monocoque (Survival Cell),C056,Front Upper Wishbone (x2),96
+E097,C052,Carbon Fibre Monocoque (Survival Cell),C057,Front Lower Wishbone (x2),96
+E098,C056,Front Upper Wishbone (x2),C058,Front Push-Rod (x2),12
+E099,C057,Front Lower Wishbone (x2),C058,Front Push-Rod (x2),12
+E100,C058,Front Push-Rod (x2),C059,Front Rockers & Torsion Bars (x2),6
+E101,C056,Front Upper Wishbone (x2),C060,Front Upright & Hub Assembly (x2),12
+E102,C057,Front Lower Wishbone (x2),C060,Front Upright & Hub Assembly (x2),12
+E103,C059,Front Rockers & Torsion Bars (x2),C061,Front Anti-Roll Bar,8
+E104,C055,Mounting Points – Engine & Gearbox,C062,Rear Upper Wishbone (x2),8
+E105,C055,Mounting Points – Engine & Gearbox,C063,Rear Lower Wishbone (x2),8
+E106,C062,Rear Upper Wishbone (x2),C064,Rear Pull-Rod (x2),12
+E107,C063,Rear Lower Wishbone (x2),C064,Rear Pull-Rod (x2),12
+E108,C064,Rear Pull-Rod (x2),C065,Rear Rockers & Damper Unit (x2),6
+E109,C062,Rear Upper Wishbone (x2),C066,Rear Upright & Hub Assembly (x2),12
+E110,C063,Rear Lower Wishbone (x2),C066,Rear Upright & Hub Assembly (x2),12
+E111,C065,Rear Rockers & Damper Unit (x2),C067,Rear Anti-Roll Bar,10
+E112,C052,Carbon Fibre Monocoque (Survival Cell),C068,Front Wing Mainplane,96
+E113,C068,Front Wing Mainplane,C069,Front Wing Flap Cascade Elements (x4),40
+E114,C068,Front Wing Mainplane,C070,Nose Cone (crash structure),40
+E115,C052,Carbon Fibre Monocoque (Survival Cell),C070,Nose Cone (crash structure),96
+E116,C052,Carbon Fibre Monocoque (Survival Cell),C071,Bargeboard / Vane Package,96
+E117,C070,Nose Cone (crash structure),C071,Bargeboard / Vane Package,24
+E118,C052,Carbon Fibre Monocoque (Survival Cell),C072,Floor & Skid Block Assembly,96
+E119,C055,Mounting Points – Engine & Gearbox,C073,Rear Wing Mainplane,8
+E120,C073,Rear Wing Mainplane,C074,DRS Flap (Drag Reduction System),30
+E121,C073,Rear Wing Mainplane,C075,Beam Wing,30
+E122,C055,Mounting Points – Engine & Gearbox,C075,Beam Wing,8
+E123,C072,Floor & Skid Block Assembly,C076,Diffuser,36
+E124,C055,Mounting Points – Engine & Gearbox,C076,Diffuser,8
+E125,C055,Mounting Points – Engine & Gearbox,C077,Gearbox Casing (8-speed semi-auto),8
+E126,C077,Gearbox Casing (8-speed semi-auto),C078,Gear Stack & Selector Mechanism,48
+E127,C077,Gearbox Casing (8-speed semi-auto),C079,Differential,48
+E128,C078,Gear Stack & Selector Mechanism,C079,Differential,32
+E129,C079,Differential,C080,Driveshafts (x2),14
+E130,C066,Rear Upright & Hub Assembly (x2),C080,Driveshafts (x2),14
+E131,C077,Gearbox Casing (8-speed semi-auto),C081,Clutch Assembly,48
+E132,C034,MGU-K Assembly (complete),C081,Clutch Assembly,8
+E133,C060,Front Upright & Hub Assembly (x2),C082,Carbon Brake Discs – Front (x2),14
+E134,C066,Rear Upright & Hub Assembly (x2),C083,Carbon Brake Discs – Rear (x2),14
+E135,C060,Front Upright & Hub Assembly (x2),C084,Brake Calipers – Front (x2),14
+E136,C082,Carbon Brake Discs – Front (x2),C084,Brake Calipers – Front (x2),16
+E137,C066,Rear Upright & Hub Assembly (x2),C085,Brake Calipers – Rear (x2),14
+E138,C083,Carbon Brake Discs – Rear (x2),C085,Brake Calipers – Rear (x2),14
+E139,C082,Carbon Brake Discs – Front (x2),C086,Brake Ducts & Cooling Scoops (x4),16
+E140,C083,Carbon Brake Discs – Rear (x2),C086,Brake Ducts & Cooling Scoops (x4),14
+E141,C084,Brake Calipers – Front (x2),C086,Brake Ducts & Cooling Scoops (x4),10
+E142,C085,Brake Calipers – Rear (x2),C086,Brake Ducts & Cooling Scoops (x4),10
+E143,C049,Engine Control Unit (ECU) – FIA Standard,C087,Master Cylinders & Brake-by-Wire ECU,8
+E144,C083,Carbon Brake Discs – Rear (x2),C087,Master Cylinders & Brake-by-Wire ECU,14
+E145,C085,Brake Calipers – Rear (x2),C087,Master Cylinders & Brake-by-Wire ECU,10
+E146,C060,Front Upright & Hub Assembly (x2),C088,Forged Magnesium Wheels – Front (x2),14
+E147,C066,Rear Upright & Hub Assembly (x2),C089,Forged Magnesium Wheels – Rear (x2),14
+E148,C088,Forged Magnesium Wheels – Front (x2),C090,Pirelli P Zero Tyres – set (4),8
+E149,C089,Forged Magnesium Wheels – Rear (x2),C090,Pirelli P Zero Tyres – set (4),8
+E150,C052,Carbon Fibre Monocoque (Survival Cell),C091,Halo Titanium Structure,96
+E151,C052,Carbon Fibre Monocoque (Survival Cell),C092,Driver Seat (custom moulded),96
+E152,C052,Carbon Fibre Monocoque (Survival Cell),C093,Steering Wheel & Column,96
+E153,C049,Engine Control Unit (ECU) – FIA Standard,C093,Steering Wheel & Column,8
+E154,C052,Carbon Fibre Monocoque (Survival Cell),C094,Safety Harness (6-point),96
+E155,C092,Driver Seat (custom moulded),C094,Safety Harness (6-point),12
+E156,C052,Carbon Fibre Monocoque (Survival Cell),C095,Fire Suppression System,96
+E157,C052,Carbon Fibre Monocoque (Survival Cell),C096,Drink System & Helmet Cooling,96
+E158,C015,Engine Assembly & Bench Calibration,C097,PU Installation into Chassis,36
+E159,C029,MGU-H Assembly (complete),C097,PU Installation into Chassis,10
+E160,C034,MGU-K Assembly (complete),C097,PU Installation into Chassis,8
+E161,C038,Power Electronics / Inverter Unit,C097,PU Installation into Chassis,16
+E162,C052,Carbon Fibre Monocoque (Survival Cell),C097,PU Installation into Chassis,96
+E163,C055,Mounting Points – Engine & Gearbox,C097,PU Installation into Chassis,8
+E164,C097,PU Installation into Chassis,C098,Gearbox Mating to PU,24
+E165,C077,Gearbox Casing (8-speed semi-auto),C098,Gearbox Mating to PU,48
+E166,C078,Gear Stack & Selector Mechanism,C098,Gearbox Mating to PU,32
+E167,C079,Differential,C098,Gearbox Mating to PU,14
+E168,C081,Clutch Assembly,C098,Gearbox Mating to PU,8
+E169,C098,Gearbox Mating to PU,C099,Suspension Assembly – Full Car,12
+E170,C056,Front Upper Wishbone (x2),C099,Suspension Assembly – Full Car,12
+E171,C057,Front Lower Wishbone (x2),C099,Suspension Assembly – Full Car,12
+E172,C058,Front Push-Rod (x2),C099,Suspension Assembly – Full Car,6
+E173,C059,Front Rockers & Torsion Bars (x2),C099,Suspension Assembly – Full Car,8
+E174,C060,Front Upright & Hub Assembly (x2),C099,Suspension Assembly – Full Car,14
+E175,C061,Front Anti-Roll Bar,C099,Suspension Assembly – Full Car,4
+E176,C062,Rear Upper Wishbone (x2),C099,Suspension Assembly – Full Car,12
+E177,C063,Rear Lower Wishbone (x2),C099,Suspension Assembly – Full Car,12
+E178,C064,Rear Pull-Rod (x2),C099,Suspension Assembly – Full Car,6
+E179,C065,Rear Rockers & Damper Unit (x2),C099,Suspension Assembly – Full Car,10
+E180,C066,Rear Upright & Hub Assembly (x2),C099,Suspension Assembly – Full Car,14
+E181,C067,Rear Anti-Roll Bar,C099,Suspension Assembly – Full Car,4
+E182,C099,Suspension Assembly – Full Car,C100,Aero & Bodywork Installation,16
+E183,C068,Front Wing Mainplane,C100,Aero & Bodywork Installation,40
+E184,C069,Front Wing Flap Cascade Elements (x4),C100,Aero & Bodywork Installation,20
+E185,C070,Nose Cone (crash structure),C100,Aero & Bodywork Installation,24
+E186,C071,Bargeboard / Vane Package,C100,Aero & Bodywork Installation,28
+E187,C072,Floor & Skid Block Assembly,C100,Aero & Bodywork Installation,36
+E188,C073,Rear Wing Mainplane,C100,Aero & Bodywork Installation,30
+E189,C074,DRS Flap (Drag Reduction System),C100,Aero & Bodywork Installation,12
+E190,C075,Beam Wing,C100,Aero & Bodywork Installation,14
+E191,C076,Diffuser,C100,Aero & Bodywork Installation,28
+E192,C099,Suspension Assembly – Full Car,C101,"Brakes, Wheels & Tyre Fitting",16
+E193,C082,Carbon Brake Discs – Front (x2),C101,"Brakes, Wheels & Tyre Fitting",16
+E194,C083,Carbon Brake Discs – Rear (x2),C101,"Brakes, Wheels & Tyre Fitting",14
+E195,C084,Brake Calipers – Front (x2),C101,"Brakes, Wheels & Tyre Fitting",10
+E196,C085,Brake Calipers – Rear (x2),C101,"Brakes, Wheels & Tyre Fitting",10
+E197,C086,Brake Ducts & Cooling Scoops (x4),C101,"Brakes, Wheels & Tyre Fitting",8
+E198,C087,Master Cylinders & Brake-by-Wire ECU,C101,"Brakes, Wheels & Tyre Fitting",10
+E199,C088,Forged Magnesium Wheels – Front (x2),C101,"Brakes, Wheels & Tyre Fitting",8
+E200,C089,Forged Magnesium Wheels – Rear (x2),C101,"Brakes, Wheels & Tyre Fitting",8
+E201,C090,Pirelli P Zero Tyres – set (4),C101,"Brakes, Wheels & Tyre Fitting",2
+E202,C099,Suspension Assembly – Full Car,C102,"Cockpit, Safety & Electronics Commissioning",16
+E203,C091,Halo Titanium Structure,C102,"Cockpit, Safety & Electronics Commissioning",16
+E204,C092,Driver Seat (custom moulded),C102,"Cockpit, Safety & Electronics Commissioning",12
+E205,C093,Steering Wheel & Column,C102,"Cockpit, Safety & Electronics Commissioning",20
+E206,C094,Safety Harness (6-point),C102,"Cockpit, Safety & Electronics Commissioning",2
+E207,C095,Fire Suppression System,C102,"Cockpit, Safety & Electronics Commissioning",4
+E208,C096,Drink System & Helmet Cooling,C102,"Cockpit, Safety & Electronics Commissioning",3
+E209,C050,Wiring Loom (PU section),C102,"Cockpit, Safety & Electronics Commissioning",16
+E210,C051,Sensors Array (temp/pressure/speed – PU),C102,"Cockpit, Safety & Electronics Commissioning",10
+E211,C097,PU Installation into Chassis,C103,Full Car Systems Check & Sign-Off,24
+E212,C098,Gearbox Mating to PU,C103,Full Car Systems Check & Sign-Off,12
+E213,C099,Suspension Assembly – Full Car,C103,Full Car Systems Check & Sign-Off,16
+E214,C100,Aero & Bodywork Installation,C103,Full Car Systems Check & Sign-Off,20
+E215,C101,"Brakes, Wheels & Tyre Fitting",C103,Full Car Systems Check & Sign-Off,8
+E216,C102,"Cockpit, Safety & Electronics Commissioning",C103,Full Car Systems Check & Sign-Off,10

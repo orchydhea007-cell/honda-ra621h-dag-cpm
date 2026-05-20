@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Honda RA621H — DAG & CPM Assembly Scheduler</title>
+  <meta name="description" content="DAG + Critical Path Method implementation for Honda RA621H F1 engine assembly scheduling. 103 components, 216 dependencies, Kahn's topological sort." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════
+     HEADER
+═══════════════════════════════ -->
+<header>
+  <div class="header-brand">
+    <div class="logo-badge">F1 · 2021 WDC</div>
+    <h1>Honda <span>RA621H</span> — DAG & CPM</h1>
+  </div>
+  <div class="header-stats">
+    <div class="header-stat">
+      <div class="val" id="hdr-nodes">—</div>
+      <div class="lbl">Nodes</div>
+    </div>
+    <div class="header-stat">
+      <div class="val" id="hdr-edges">—</div>
+      <div class="lbl">Edges</div>
+    </div>
+    <div class="header-stat">
+      <div class="val" id="hdr-critical">—</div>
+      <div class="lbl">Critical</div>
+    </div>
+    <div class="header-stat">
+      <div class="val" id="hdr-duration">—</div>
+      <div class="lbl">Hrs Total</div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════
+     TAB BAR
+═══════════════════════════════ -->
+<nav class="tab-bar">
+  <button class="tab-btn active" data-tab="overview">Overview</button>
+  <button class="tab-btn" data-tab="dag">DAG Visualizer</button>
+  <button class="tab-btn" data-tab="topo">Topological Sort</button>
+  <button class="tab-btn" data-tab="cpm">Critical Path (CPM)</button>
+  <button class="tab-btn" data-tab="table">Component Table</button>
+  <button class="tab-btn" data-tab="algo">Algorithm</button>
+</nav>
+
+<!-- ═══════════════════════════════
+     MAIN
+═══════════════════════════════ -->
+<main>
+
+  <!-- ─────────────────────────────
+       TAB: OVERVIEW
+  ───────────────────────────────── -->
+  <div id="panel-overview" class="tab-panel active">
+
+    <div class="section-header">
+      <h2>Assembly <em>Overview</em></h2>
+      <p>103 components · 216 dependency edges · Honda RA621H · F1 2021</p>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="num" id="stat-nodes">—</div>
+        <div class="label">Components / Nodes</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="stat-edges">—</div>
+        <div class="label">Dependency Edges</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="stat-roots">—</div>
+        <div class="label">Root Nodes</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="stat-critical">—</div>
+        <div class="label">Critical Components</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="stat-duration">—</div>
+        <div class="label">Project Duration (hrs)</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="stat-noncrit">—</div>
+        <div class="label">Non-Critical (have float)</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Subsystem Duration Breakdown</h3>
+          <span class="badge badge-gray">19 subsystems</span>
+        </div>
+        <div class="panel-body">
+          <div class="subsystem-bars" id="subsystem-bars">
+            <div class="loading-pulse">COMPUTING…</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Algorithm Pipeline</h3>
+          <span class="badge badge-red">O(V + E)</span>
+        </div>
+        <div class="panel-body">
+          <div class="algo-steps">
+            <div class="algo-step">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4>Build DAG</h4>
+                <p>103 components modelled as nodes. Each dependency entry becomes a directed edge. Adjacency list + reverse adjacency built simultaneously. 16 root nodes (no predecessors), C103 as the single sink.</p>
+              </div>
+            </div>
+            <div class="algo-step">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4>Kahn's Topological Sort</h4>
+                <p>BFS-based sort: compute <code>in-degree</code> for each node, enqueue zeros, process in waves. Each wave represents a parallelisable batch. Detects cycles via residual in-degree &gt; 0. Complexity: <code>O(V + E)</code>.</p>
+              </div>
+            </div>
+            <div class="algo-step">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4>CPM — Forward Pass</h4>
+                <p>Traverse topological order, compute <code>ES</code> = max(EF of predecessors) and <code>EF = ES + duration</code> for each node. Project duration = max EF across all leaf nodes.</p>
+              </div>
+            </div>
+            <div class="algo-step">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <h4>CPM — Backward Pass</h4>
+                <p>Traverse reverse order, compute <code>LF</code> = min(LS of successors) and <code>LS = LF − duration</code>. Total Float <code>TF = LS − ES</code>. Nodes with <code>TF = 0</code> form the critical path.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /overview -->
+
+  <!-- ─────────────────────────────
+       TAB: DAG VISUALIZER
+  ───────────────────────────────── -->
+  <div id="panel-dag" class="tab-panel">
+
+    <div class="section-header">
+      <h2>DAG <em>Visualizer</em></h2>
+      <p>Hover nodes for details · Scroll to zoom · Drag to pan · Red = critical path</p>
+    </div>
+
+    <div style="margin-bottom:1rem">
+      <div class="subsystem-legend" id="subsystem-legend"></div>
+    </div>
+
+    <div class="canvas-wrapper">
+      <canvas id="dag-canvas"></canvas>
+      <div class="canvas-controls">
+        <button class="canvas-btn" id="btn-zoom-in">＋</button>
+        <button class="canvas-btn" id="btn-zoom-out">－</button>
+        <button class="canvas-btn" id="btn-fit">⊡ Fit</button>
+        <button class="canvas-btn" id="btn-reset">↺ Reset</button>
+      </div>
+    </div>
+
+  </div><!-- /dag -->
+
+  <!-- ─────────────────────────────
+       TAB: TOPOLOGICAL SORT
+  ───────────────────────────────── -->
+  <div id="panel-topo" class="tab-panel">
+
+    <div class="section-header">
+      <h2>Topological <em>Sort</em></h2>
+      <p id="topo-order-count">—</p>
+    </div>
+
+    <div class="stat-grid" style="margin-bottom:1.5rem">
+      <div class="stat-card" style="grid-column:span 2">
+        <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-2);margin-bottom:0.5rem">Validity</div>
+        <div id="topo-valid">—</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Kahn's Algorithm — Wave Execution</h3>
+          <span class="badge badge-gray">BFS-based</span>
+        </div>
+        <div class="panel-body">
+          <p style="font-size:0.8rem;color:var(--text-2);margin-bottom:1rem">Each wave contains nodes that can be processed in <strong style="color:var(--text-1)">parallel</strong> — all their predecessors are already done. <span style="color:var(--red)">Red</span> nodes are on the critical path.</p>
+          <div class="topo-steps" id="topo-waves">
+            <div class="loading-pulse">SORTING…</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h3>How Kahn's Algorithm Works</h3>
+        </div>
+        <div class="panel-body">
+          <div class="algo-steps">
+            <div class="algo-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Compute In-Degree</h4>
+                <p>For each node, count incoming edges. Nodes with <code>in-degree = 0</code> have no prerequisites — they go into the initial queue.</p>
+              </div>
+            </div>
+            <div class="algo-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Process Queue</h4>
+                <p>Dequeue a node, add it to the sorted order. For each of its successors, decrement their in-degree. When a successor's in-degree hits 0, enqueue it.</p>
+              </div>
+            </div>
+            <div class="algo-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Cycle Detection</h4>
+                <p>If after processing, the output contains fewer nodes than the graph — a cycle exists. For assembly scheduling, this means a circular dependency (impossible to assemble).</p>
+              </div>
+            </div>
+            <div class="algo-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Parallel Batching (Waves)</h4>
+                <p>Nodes processed in the same BFS level form a "wave" — they can be assembled simultaneously by different teams. This directly maps to resource scheduling.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /topo -->
+
+  <!-- ─────────────────────────────
+       TAB: CPM
+  ───────────────────────────────── -->
+  <div id="panel-cpm" class="tab-panel">
+
+    <div class="section-header">
+      <h2>Critical Path <em>Method</em></h2>
+      <p id="cp-duration">—</p>
+    </div>
+
+    <div class="cpm-grid">
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Critical Path</h3>
+          <span class="badge badge-red" id="cp-count">—</span>
+        </div>
+        <div class="panel-body" style="padding:0.75rem">
+          <ul class="critical-path-list" id="critical-path-list">
+            <div class="loading-pulse">COMPUTING PATH…</div>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Float Analysis</h3>
+          <span class="badge badge-gray">TF = LS − ES</span>
+        </div>
+        <div class="panel-body" style="padding:0;overflow:auto;max-height:420px">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Component</th>
+                <th>ES</th>
+                <th>EF</th>
+                <th>LS</th>
+                <th>LF</th>
+                <th>Float (TF)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="float-table-body">
+              <tr><td colspan="8" class="loading-pulse">LOADING…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h3>CPM Interpretation Guide</h3>
+      </div>
+      <div class="panel-body">
+        <div class="two-col">
+          <div>
+            <div class="algo-steps">
+              <div class="algo-step">
+                <div class="step-num" style="background:#E10600">ES</div>
+                <div class="step-content">
+                  <h4>Earliest Start</h4>
+                  <p>The earliest time this component can begin assembly — determined by when all its prerequisites finish. <code>ES = max(EF of all predecessors)</code>.</p>
+                </div>
+              </div>
+              <div class="algo-step">
+                <div class="step-num" style="background:#E65100">EF</div>
+                <div class="step-content">
+                  <h4>Earliest Finish</h4>
+                  <p>Earliest completion time. <code>EF = ES + Duration</code>. Drives the forward pass — each node's EF gates its successors' ES.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="algo-steps">
+              <div class="algo-step">
+                <div class="step-num" style="background:#1565C0">LS</div>
+                <div class="step-content">
+                  <h4>Latest Start</h4>
+                  <p>The latest this component can start without delaying the project. <code>LS = LF − Duration</code>. Computed in backward pass (right-to-left).</p>
+                </div>
+              </div>
+              <div class="algo-step">
+                <div class="step-num" style="background:#2E7D32">TF</div>
+                <div class="step-content">
+                  <h4>Total Float</h4>
+                  <p>Scheduling flexibility. <code>TF = LS − ES</code>. If TF = 0, the component is on the <strong style="color:var(--red)">critical path</strong> — any delay cascades to the final deadline.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cpm -->
+
+  <!-- ─────────────────────────────
+       TAB: COMPONENT TABLE
+  ───────────────────────────────── -->
+  <div id="panel-table" class="tab-panel">
+
+    <div class="section-header">
+      <h2>Component <em>Table</em></h2>
+      <p id="table-count">Loading…</p>
+    </div>
+
+    <div class="table-controls">
+      <input type="text" class="search-box" id="table-search" placeholder="Search ID, name, subsystem…" />
+      <select class="filter-select" id="table-sub-filter">
+        <option value="all">All Subsystems</option>
+      </select>
+      <select class="filter-select" id="table-crit-filter">
+        <option value="all">All Types</option>
+        <option value="critical">Critical Only</option>
+        <option value="noncritical">Non-Critical Only</option>
+      </select>
+    </div>
+
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-sort="id">ID</th>
+            <th data-sort="name">Component</th>
+            <th data-sort="duration">Duration</th>
+            <th data-sort="es">ES</th>
+            <th data-sort="ef">EF</th>
+            <th>LS</th>
+            <th>LF</th>
+            <th data-sort="float">Float</th>
+            <th>Type</th>
+            <th>Depends On</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr><td colspan="10" class="loading-pulse">LOADING DATA…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div><!-- /table -->
+
+  <!-- ─────────────────────────────
+       TAB: ALGORITHM
+  ───────────────────────────────── -->
+  <div id="panel-algo" class="tab-panel">
+
+    <div class="section-header">
+      <h2>Algorithm <em>Explainer</em></h2>
+      <p>DAG + Kahn's Topological Sort + Critical Path Method</p>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Why DAG?</h3>
+        </div>
+        <div class="panel-body">
+          <p style="font-size:0.85rem;color:var(--text-2);line-height:1.7;margin-bottom:1rem">
+            A <strong style="color:var(--text-1)">Directed Acyclic Graph (DAG)</strong> perfectly models assembly scheduling because:
+          </p>
+          <div class="algo-steps">
+            <div class="algo-step">
+              <div class="step-num">→</div>
+              <div class="step-content">
+                <h4>Directed Edges = Dependencies</h4>
+                <p>An edge from A → B means "A must be assembled before B". The direction encodes the mandatory ordering constraint.</p>
+              </div>
+            </div>
+            <div class="algo-step">
+              <div class="step-num">∅</div>
+              <div class="step-content">
+                <h4>Acyclic = No Circular Deps</h4>
+                <p>A cycle would mean "A needs B, B needs A" — physically impossible. DAGs guarantee a valid assembly order always exists.</p>
+              </div>
+            </div>
+            <div class="algo-step">
+              <div class="step-num">⊕</div>
+              <div class="step-content">
+                <h4>Topological Order = Build Sequence</h4>
+                <p>Any topological ordering of the DAG is a valid assembly sequence. Multiple valid orderings → scheduling flexibility.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Complexity Analysis</h3>
+          <span class="badge badge-red">O(V + E)</span>
+        </div>
+        <div class="panel-body">
+          <table class="data-table" style="font-size:0.78rem">
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>Algorithm</th>
+                <th>Time</th>
+                <th>Space</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Build DAG</td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">adjacency list</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--red)">O(V+E)</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">O(V+E)</span></td>
+              </tr>
+              <tr>
+                <td>Kahn's Sort</td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">BFS + in-degree</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--red)">O(V+E)</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">O(V)</span></td>
+              </tr>
+              <tr>
+                <td>CPM Forward</td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">topo traversal</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--red)">O(V+E)</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">O(V)</span></td>
+              </tr>
+              <tr>
+                <td>CPM Backward</td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">reverse topo</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--red)">O(V+E)</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">O(V)</span></td>
+              </tr>
+              <tr>
+                <td>Path Extraction</td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">greedy walk</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--red)">O(V)</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">O(V)</span></td>
+              </tr>
+              <tr style="border-top:1px solid var(--border-red)">
+                <td><strong>Total</strong></td>
+                <td></td>
+                <td><span style="font-family:var(--font-mono);color:var(--red);font-weight:700">O(V+E)</span></td>
+                <td><span style="font-family:var(--font-mono);color:var(--text-2)">O(V+E)</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.75rem;color:var(--text-3);margin-top:1rem;font-family:var(--font-mono)">
+            V = 103 nodes · E = 216 edges → extremely efficient even at scale
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:1.5rem">
+      <div class="panel-header">
+        <h3>References</h3>
+        <span class="badge badge-gray">3 peer-reviewed papers</span>
+      </div>
+      <div class="panel-body">
+        <table class="data-table" style="font-size:0.78rem">
+          <thead>
+            <tr><th>#</th><th>Title</th><th>Year</th><th>Relevance</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-family:var(--font-mono);color:var(--red)">[1]</td>
+              <td>Activity Networks Determine Project Performance</td>
+              <td style="font-family:var(--font-mono);color:var(--text-2)">2023</td>
+              <td style="color:var(--text-2);font-size:0.72rem">CPM theoretical foundation, forward/backward pass formulation</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono);color:var(--red)">[2]</td>
+              <td>A Multi-Object Genetic Algorithm for Assembly Line Balance Optimization in Garment Flexible Job Shop Scheduling</td>
+              <td style="font-family:var(--font-mono);color:var(--text-2)">2024</td>
+              <td style="color:var(--text-2);font-size:0.72rem">Assembly line scheduling with dependency constraints</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono);color:var(--red)">[3]</td>
+              <td>DAG-based task scheduling for parallel processing systems</td>
+              <td style="font-family:var(--font-mono);color:var(--text-2)">2023</td>
+              <td style="color:var(--text-2);font-size:0.72rem">Kahn's algorithm parallelism batching / wave analysis</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /algo -->
+
+</main>
+
+<!-- ═══════════════════════════════
+     TOOLTIP
+═══════════════════════════════ -->
+<div id="tooltip"></div>
+
+<!-- ═══════════════════════════════
+     FOOTER
+═══════════════════════════════ -->
+<footer>
+  <p>Honda RA621H DAG &amp; CPM — Struktur Data dan Algoritma Proyek 2025 · Tim SDA</p>
+  <p>Dataset: 103 components · 216 edges · Built with vanilla JS + Canvas API</p>
+</footer>
+
+<!-- Scripts -->
+<script src="js/algorithm.js"></script>
+<script src="js/visualizer.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
